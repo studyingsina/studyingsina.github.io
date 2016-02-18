@@ -1,16 +1,8 @@
-link: /:year/:month/:day/:title.html
-markdown: kramdown
-highlighter: rouge
-
-kramdown:
-  input: GFM
-
-# 作者信息
-author: 
-    name: 柒八块表
-    email: mestudying@sina.com
-    link: http://www.longtask.net
-# 站点信息
-    title: 柒八块表的博客 
-    description: 柒八块表的博客
-    url: http://www.longtask.net
+markdown: rdiscount
+permalink: /:year/:month/:day/:title/
+url: http://blog.nswebfrog.com
+author: nswebfrog
+highlighter: pygments
+exclude: ["Rakefile", "CNAME", "README.md"]
+safe: true
+paginate: 16
