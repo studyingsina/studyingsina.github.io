@@ -12,3 +12,6 @@ tags:
 
 ### 使用
 mysqldbcopy --source=username:password@localhost --destination=username:password@localhost source_db:target_db
+
+### 参考
+https://dev.mysql.com/doc/mysql-utilities/1.5/en/utils-task-clone-db.html
