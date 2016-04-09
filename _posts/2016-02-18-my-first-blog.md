@@ -5,8 +5,10 @@ categories:
 - Life
 tags:
 - Life
-
 ---
+
+* content
+{:toc}
 
 ### 为什么
 1. 之前用过一些其它的个人博客系统，如:wordpress、B3等，但是总感觉有些重，写博客时的editor一直感觉也不太好用;  
