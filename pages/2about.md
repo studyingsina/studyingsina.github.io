@@ -11,9 +11,10 @@ icon: glyphicon-heart
 
 ----
 
-###联系方式：        
+### 联系方式：        
 
 个人邮箱: [mestudying@sina.com](mailto:mestudying@sina.com)     
+QQ: 1239786937
 
 ----
 
