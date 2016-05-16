@@ -2,9 +2,9 @@
 layout: post
 title: "kindle小工具"
 categories: 
-- Life
+- Tech
 tags:
-- Life
+- Tech
 ---
 
 * content
