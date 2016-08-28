@@ -20,7 +20,3 @@ tags:
 
 ### 编辑器
 ![编辑器](/css/pics/vim_editor.png)
-
-### 周六TB
-去石林峡爬山；
-xxxxx
