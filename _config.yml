@@ -11,10 +11,17 @@ description: 柒八块表的博客
 # url: "http://yourdomain.com" # the base hostname & protocol for your site
 # twitter_username: jekyllrb
 github_username: mestudyingsina 
+baseurl: "" # the subpath of your site, e.g. /blog
+category_dir: category/
+tag_dir: tag/
+excerpt_separator: "\n\n\n\n"
 permalink: /:year/:month/:day/:title/
 
 # Build settings
 markdown: kramdown
+kramdown:
+ input: GFM
+ syntax_highlighter: rouge
 gems: [jekyll-paginate]
 
 paginate: 10
@@ -25,3 +32,8 @@ paginate_path: "page:num"
 # highlighter: pygments
 # highlighter: rouge
 # highlighter: false
+
+
+
+
+
