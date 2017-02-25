@@ -2,9 +2,9 @@
 layout: post
 title: "读《重构》"
 categories: 
-- Tech Reading
+- Reading
 tags:
-- Tech Reading
+- Reading
 ---
 
 * content

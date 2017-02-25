@@ -2,9 +2,9 @@
 layout: post
 title: "读《SRE:Google运维解密》"
 categories: 
-- Tech Reading
+- Reading
 tags:
-- Tech Reading
+- Reading
 ---
 
 * content

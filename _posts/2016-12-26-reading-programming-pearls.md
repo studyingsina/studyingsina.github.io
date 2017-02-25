@@ -2,9 +2,9 @@
 layout: post
 title: "读《编程珠玑》"
 categories: 
-- Tech Reading
+- Reading
 tags:
-- Tech Reading
+- Reading
 ---
 
 * content
