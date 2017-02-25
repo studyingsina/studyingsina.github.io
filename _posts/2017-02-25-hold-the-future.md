@@ -34,4 +34,4 @@ tags:
 
 规划好时间，且行且思、多总结；
 
-
+![未来](/css/pics/hold-the-future.jpg)
