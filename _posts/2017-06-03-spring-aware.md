@@ -22,3 +22,7 @@ tags:
 
 ## ImportBeanDefinitionRegistrar
 
+## FactoryBean
+
+## InitializingBean
+
