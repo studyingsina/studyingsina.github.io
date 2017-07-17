@@ -10,7 +10,7 @@ tags:
 * content
 {:toc}
 
-![未来](/css/pics/2017-book-list.jpg)
+![Mock](/css/pics/2017-07-17-jewellery.jpg)
 
 ## 问题
 当我们在写自动化case的时候，往往需要将外部的依赖mock掉，在我们公司，RPC组件用的Thrift，那么就涉及到一个问题，如果将Thrift给mock掉，并且我们这里是在做自动化测试（功能测试），不是单元测试，在单元测试的时候我们很容易mock。
