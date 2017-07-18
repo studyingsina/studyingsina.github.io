@@ -13,35 +13,34 @@ tags:
 ![Mock](/css/pics/2017-07-17-jewellery.jpg)
 
 ## 问题
-当我们在写自动化case的时候，往往需要将外部的依赖mock掉，在我们公司，RPC组件用的Thrift，那么就涉及到一个问题，如果将Thrift给mock掉，并且我们这里是在做自动化测试（功能测试），不是单元测试，在单元测试的时候我们很容易mock。
+当我们在写自动化case的时候，往往需要将外部的依赖mock掉，在我们公司，RPC组件用的Thrift，那么就涉及到一个问题，如何将Thrift给mock掉，并且我们这里是在做自动化测试（功能测试），不是单元测试，在单元测试的时候我们很容易mock。
 
 自动化测试流程如下：
 
-![autotest-process](/css/pics/2017-07-17-autotest-process.jpg)
+![autotest-process](/css/pics/2017-07-17-autotest-process.png)
 
 ## 思路
 
 ### Thrift调用流程
 我们先来了解下Thrift调用的流程，如图：
 
-![thrift-invoke](/css/pics/2017-07-17-thrift-invoke.jpg)
+![thrift-invoke](/css/pics/2017-07-17-thrift-invoke.png)
 
-从图中可以看到，我们在很多点都可以做一些动作，达到我们Mock的效果；凡是图上标记数据的调用处都可以；
+从图中可以看到，我们在很多点都可以做一些动作，达到我们Mock的效果；凡是图上标记数字(1~14)的调用处都可以；
+
 整体上可以分为两类：Client端、Server端。
 
 ### Client
 在Thrift Client端做一层代理，将Client的请求都打到一个Mock Server端口上，在代理层中解析Mock的数据；如图：
 
-![thrift-mock-client](/css/pics/2017-07-17-thrift-mock-client.jpg)
+![thrift-mock-client](/css/pics/2017-07-17-thrift-mock-client.png)
 
 * 优点：容易实现；
-* 缺点：业务系统要引入Thrift Client的代理，对业务系统侵入；
+* 缺点：业务系统要引入Thrift Client的代理，有侵入；
 * 总结：重Client、轻Server；
 
 ### Server
-在Thrift Server端缓存Mock的数据，伪造成Thrift协议返回；如图：
-
-![thrift-mock-server](/css/pics/2017-07-17-thrift-mock-server.jpg)
+在Thrift Server端缓存Mock的数据，伪造成Thrift协议返回；
 
 * 优点：业务系统无侵入；
 * 缺点：实现难度要大一些；
@@ -49,8 +48,6 @@ tags:
 
 ## 实现
 理论上以上两种思路都可行，但是作为一个业务系统开发人员来说，我个人更倾向于Server端这种，因为这种方式对业务系统无侵入，更接入于真实的测试环境，尽管这种方式我们要比Client多做一些工作；
-
-所以我重点讲Server端的实现：
 
 ### Client
 
@@ -85,7 +82,7 @@ HelloWorldServiceProxy的say方法如下实现：
 
 按照我们上图Thrift调用流程中，从8到11这4步我们都可以做些动作，此处我选择在步骤10处返回Mock数据、直接操作Socket的InputSream和OutputStream，这样我可以不关心Thrift协议层的一些细节而达到目的；
 
-![thrift-mock-server-me](/css/pics/2017-07-17-thrift-mock-server-me.jpg)
+![thrift-mock-server-me](/css/pics/2017-07-17-thrift-mock-server-me.png)
 
 贴一段主要的代码逻辑：
 ```Java
@@ -127,7 +124,7 @@ HelloWorldServiceProxy的say方法如下实现：
 
 先运行ThriftServerDemo.java，再运行ThriftClientDemo.java，便可看到结果；
 
-此处只是拿原生的Thrift写了一个实现，离实际正式环境使用还有一定差距，不过思路是一致的，比如我们公司对原生Thrift做了一层封装，主要有一些服务自动注册、调用链追踪等功能，我在此基础上按上边的思路实现了一个Mock Server。
+此处只是拿原生的Thrift写了一个实现，离实际正式环境使用还有一定差距，不过思路是一致的，比如我们公司对原生Thrift做了一层封装，加入了服务自动注册、调用链追踪等功能，我便按上边的思路实现了一个Mock Server。
 
 ### 其它
 对于其它一些Mock Server实现方式，我见过的有：
