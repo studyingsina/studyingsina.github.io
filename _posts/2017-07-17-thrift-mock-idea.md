@@ -84,7 +84,7 @@ HelloWorldServiceProxy的say方法如下实现：
 当然了，这里只是简单介绍一种思路，具体实现上见仁见智。
 
 ### Server
-说下Server端的实现，Thrift其实底层也还是对Java Socket的包装，只是在原生的Socket上面做了一些约定（即Thrift Protocal）：比如前几个字节是TMessage头，后几个字节是TMessage尾等等，如果想清楚这点，那么我们的实现起来就简单了。
+说下Server端的实现，Thrift其实底层也还是对Java Socket的包装，只是在原生的Socket上面做了一些约定（即Thrift Protocal）：比如前几个字节是TMessage头，后几个字节是TMessage尾等等，如果想清楚这点，那么我们实现起来就简单了。
 
 按照我们上图Thrift调用流程中，从8到11这4步我们都可以做些动作，此处我选择在步骤10处返回Mock数据、直接操作Socket的InputSream和OutputStream，这样我可以不关心Thrift协议层的一些细节而达到目的；
 
