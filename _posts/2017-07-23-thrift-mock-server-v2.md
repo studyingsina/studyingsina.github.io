@@ -43,7 +43,7 @@ Thrift为了简化Java开发，支持纯Java的实现，用几个简单的注解
 其实这张图跟[Thrift Mock Server](http://www.longtask.net/2017/07/17/thrift-mock-server/)的图类似，只是在目标代码这块不一样，即图中黄色两块：Codec-Client、Codec-Server，相比原来IDL的方式，我们其实还是需要目标代码，只是说目标代码不再由我们自己去生成，而是通过[Facebook swift](https://github.com/facebook/swift)动态生成：
 
 1. 读取注解标注的服务；
-2. 用Codec生成编/解码动态生成Class文件；
+2. 用Codec编/解码动态生成Class文件；
 3. JVM载入这些动态生成的Class文件；
 4. 剩余的步骤跟IDL方式一样；
 
@@ -51,7 +51,7 @@ Thrift为了简化Java开发，支持纯Java的实现，用几个简单的注解
 
 唯一不同的便是我们得根据注解方便去实现一遍，主要工作量在看懂swift api、生成每个服务的Codec；
 
-此处我也实现了一个注解的[demo](https://github.com/studyingsina/spring_use):
+我也实现了一个注解的[demo](https://github.com/studyingsina/spring_use):
 
 先运行ThriftServerV2Demo.java，再运行ThriftClientV2Demo.java，便可看到结果；
 
