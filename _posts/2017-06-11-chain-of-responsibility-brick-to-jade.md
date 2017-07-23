@@ -39,25 +39,10 @@ tags:
 
 ### Tomcat
 
-## 实例业务系统中应用
+### Netty
+
+### 实际业务系统中应用
 
 ## 总结
 
 ## 引用
-
-### Servlet
-```Java
-/**
- * 创建并下载文件
- * @param  {String} fileName 文件名
- * @param  {String} content  文件内容
- */
-function createAndDownloadFile(fileName, content) {
-    var aTag = document.createElement('a');
-    var blob = new Blob([content]);
-    aTag.download = fileName;
-    aTag.href = URL.createObjectURL(blob);
-    aTag.click();
-    URL.revokeObjectURL(blob);
-}
-```
