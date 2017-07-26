@@ -22,7 +22,7 @@ markdown: kramdown
 kramdown:
  input: GFM
  syntax_highlighter: rouge
-gems: [jekyll-paginate]
+gems: [jekyll-paginate, jekyll-seo-tag]
 
 paginate: 10
 paginate_path: "page:num"
