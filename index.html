@@ -23,27 +23,18 @@ layout: default
                     </a>
                     {% endfor %}
 
-                    <!-- 分页 -->
+                    <!-- Pagination links -->
                     <div class="paginator">
-                        {% if paginator.total_pages > 1 %}
-                        <!-- 分页代码 -->
                         {% if paginator.previous_page %}
-                        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">上一页</a>
-                        {% endif %}
-
-                        {% for page in (1..paginator.total_pages) %}
-                        {% if page == paginator.page %}
-                        <span class="active">{{ page }}</span>
-                        {% elsif page == 1 %}
-                        <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+                        <a href="{{ paginator.previous_page_path }}" class="previous">Previous</a>
                         {% else %}
-                        <a href="/{{ site.paginate_path | prepend: site.url | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+                        <span class="previous">Previous</span>
                         {% endif %}
-                        {% endfor %}
-
+                        <span class="active">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
                         {% if paginator.next_page %}
-                        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">下一页</a>
-                        {% endif %}
+                        <a href="{{ paginator.next_page_path }}" class="next">Next</a>
+                        {% else %}
+                        <span class="next ">Next</span>
                         {% endif %}
                     </div>
 
