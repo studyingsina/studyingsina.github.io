@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "多线程系列-先写一个简单WebServer"
+title: "Java多线程系列-先写一个简单WebServer"
 description: "Java 多线程 线程池"
 categories: 
 - Tech
