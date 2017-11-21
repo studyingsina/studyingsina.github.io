@@ -36,6 +36,7 @@ tags:
 [《Java多线程系列-先写一个简单WebServer》](http://www.longtask.net/2017/11/20/a-simple-webserver/)
 
 ### 开始给主线程减压
+[《Java多线程系列-开始给主线程减压》](http://www.longtask.net/2017/11/21/reduce-from-main/)
 
 ### 开始给工作线程减压
 
