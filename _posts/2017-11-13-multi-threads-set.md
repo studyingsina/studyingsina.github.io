@@ -32,17 +32,18 @@ tags:
 
 ## 实例学习多线程
 
-### Java多线程系列-先写一个简单WebServer
+### 先写一个简单WebServer
+[《Java多线程系列-先写一个简单WebServer》](http://www.longtask.net/2017/11/20/a-simple-webserver/)
 
-### Java多线程系列-开始给主线程减压
+### 开始给主线程减压
 
-### Java多线程系列-开始给工作线程减压
+### 开始给工作线程减压
 
-### Java多线程系列-完善请求处理模块
+### 完善请求处理模块
 
-### Java多线程系列-WebServer简单重构
+### WebServer简单重构
 
-### Java多线程系列-JCU API实现
+### JCU API实现
 
 ## 一些技巧
 
