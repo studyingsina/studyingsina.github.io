@@ -20,7 +20,7 @@ tags:
 # 需求
 
 1. 创建一个工作线程去处理HTTP请求，将main线程做的事情和工作线程做的事情分离；
-2. 随着功能的完善，用面向对象的思想去组织我们的代码，抽象出一些概念；而不是像V1版本所有的代码都放在一个类中；
+2. 随着功能的完善，采用面向对象的思想去组织我们的代码，抽象出一些概念；而不是像V1版本所有的代码都放在一个类中；
 
 # 功能开发
 
@@ -53,9 +53,9 @@ public class Worker implements Runnable {
     }
 
     @Override
-        public void run() {
-            server.serve();
-        }
+    public void run() {
+        server.serve();
+    }
 
 }
 
@@ -64,7 +64,7 @@ public class Worker implements Runnable {
 完整代码实现：[BootstrapV2.java](https://github.com/studyingsina/concurrency-programming-demo/blob/master/src/main/java/com/studying/concurrency/v2/BootstrapV2.java)
 
 ## 做个重构
-随着功能的不断完善，我们要代码量也越来越多，将所有代码耦合在一个类中显然不是一个好的办法，这一版当中用面向对象的思想去做个重构，关键点：职责单一；
+随着功能的不断完善，我们的代码量也越来越多，将所有代码耦合在一个类中显然不是一个好的办法，这一版当中我们采用面向对象的思想去做个重构，关键点：职责单一；
 
 ### Bootstrap-启动器
 
