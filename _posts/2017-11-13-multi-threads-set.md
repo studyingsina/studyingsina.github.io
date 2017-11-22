@@ -39,8 +39,9 @@ tags:
 [《Java多线程系列-开始给主线程减压》](http://www.longtask.net/2017/11/21/reduce-from-main/)
 
 ### 开始给工作线程减压
+[《Java多线程系列-开始给工作线程减压》](http://www.longtask.net/2017/11/21/reduce-worker/)
 
-### 完善请求处理模块
+### 解决串行化问题
 
 ### WebServer简单重构
 

@@ -170,7 +170,7 @@ private synchronized Socket await() throws Exception {
 
 ```
 
-注意此处我们通知用的nofity，还一个notifyAll方法我们为什么不用呢？因为读线程只有一个、写线程也只有一个，所以用notify就够了，如果读写线程种有多个，那么我们就得用notifyAll了；
+注意此处我们通知用的nofity，还一个notifyAll方法我们为什么不用呢？因为读线程只有一个、写线程也只有一个，所以用notify就够了，如果读写线程有多个，那么我们就得用notifyAll了；
 
 # 问题
 
