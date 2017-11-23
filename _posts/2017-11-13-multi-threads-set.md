@@ -26,13 +26,17 @@ tags:
 
 当然，这其中也会涉及到一些其它知识点，比如：Java Socket、重构、面向对象设计等；
 
+本系列文章的正确打开方式：先将完整代码下载运行之、再亲手撸一遍、再查相关知识点、再后看每篇文章内容；
+
+看完本系列：希望你知道如何构建一个简单的WebServer、学会应用多线程编程、知道业务上的增删改查是由哪些线程完成的；
+
 ## 为什么需要多线程
 
 ## 多线程编程面临的问题
 
-### 线程互斥与同步
+线程互斥与同步
 
-### 线程通信
+线程通信
 
 ## 实例学习多线程
 
@@ -46,20 +50,21 @@ tags:
 [《Java多线程系列-开始给工作线程减压》](http://www.longtask.net/2017/11/21/reduce-worker/)
 
 ### 缓解忙等问题
-
 [《Java多线程系列-缓解忙等问题》](http://www.longtask.net/2017/11/21/reduce-worker/)
 
-### WebServer简单重构
+### 增加工作线程-线程池
+
+### WebServer重构
 
 ### JCU API实现
 
-## 一些技巧
+## 知识点
 
 ### Java中多线程编程提供的解决方案
 
-### 多线程编程的一些经验
+JDK1.5前的实现；
 
-### 线程池
+JCU的实现； 
 
 ## 工作中的一些案例
 
@@ -67,8 +72,6 @@ tags:
 
 # 引用
 
-[《How Tomcat Works》](https://book.douban.com/subject/1943128/)
-
-[《Java Thread Programming》](https://book.douban.com/subject/1864049/)
-
-[《Tomcat源码》](http://tomcat.apache.org/)
+1. [《How Tomcat Works》](https://book.douban.com/subject/1943128/)
+2. [《Java Thread Programming》](https://book.douban.com/subject/1864049/)
+3. [《Tomcat源码》](http://tomcat.apache.org/)
