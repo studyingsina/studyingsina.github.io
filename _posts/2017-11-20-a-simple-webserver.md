@@ -13,11 +13,11 @@ tags:
 
 ![Metrics](/css/pics/2017-11-20-webserver-tou.jpg)
 
-# 背景
+## 背景
 
 想通过实际场景来介绍下多线程的应用，思来想去，就以开发一个Demo版的Web容器为例子来讲一下吧，这里面会用到线程池、线程通信、线程同步等知识点，能把多线程用到的知识点给贯穿起来；
 
-# 需求
+## 需求
 
 先来看看我们的需求背景，我们要开发一个Web容器，满足以下功能：
 
@@ -30,9 +30,9 @@ tags:
 
 ![WebServer](/css/pics/2017-11-20-webserver.png)
 
-# 功能开发
+## 功能开发
 
-## 单线程版
+### 单线程版
 了解了以上需求，我们先进行简单的功能开发，那我们先回顾下如何实现一个简单的WebServer；
 
 当用户从浏览器输入一个地址，比如：<http://localhost:8080/>，其实是请求到我们WebServer的机器并且连接上8080端口，告诉WebServer，我们请求方法为GET、请求路径是/（根路径），告诉WebServer，如果你能找到这个请求对应的资源，那么按HTTP协议格式给我返回，如果你找不到，也按照HTTP协议格式给我返回，明白了WebServer接收一个浏览器请求的过程，那么我们的功能实现起来就简单的多了，如下：
@@ -47,7 +47,7 @@ tags:
 
 ![WebServer-Process](/css/pics/2017-11-20-webserver-process.png)
 
-## 代码实现
+### 代码实现
 其实看明白上边的处理流程，剩下的便是用Java提供的API去实现了，比如简单，贴一段主要代码，完整代码后边有链接：
 
 ```Java
@@ -142,11 +142,11 @@ tags:
 
 完整代码实现：[BootstrapV1.java](https://github.com/studyingsina/concurrency-programming-demo/blob/master/src/main/java/com/studying/concurrency/v1/BootstrapV1.java)
 
-# 问题
+## 问题
 我们实现了一版WebServer，但是有什么问题呢？
 
 1. 我们让main线程去监听8080端口，并且main线程去查询资源、返回结果；
 2. 因为只main一个线程处理所有逻辑，就导致了我们首页的5个请求（一个index.html界面和4个图片资源）是串行的处理，即先处理了index.html文件，然后依次处理每个图片，如果同时有多个人打开浏览器请求，那么所有的请求也都是串行的；
 
-# 感想
+## 感想
 这一版仅实现功能，算是第一次迭代，有了一个可用的版本；接下来，我们会进行多次迭代，一步步的完善；其实实际业务开发中，不也是这样么，没有一开始就设计完美无缺的系统、都是多次迭代、运维出来的系统。

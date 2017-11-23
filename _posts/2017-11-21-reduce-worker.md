@@ -13,19 +13,19 @@ tags:
 
 ![Reduce-Worker](/css/pics/2017-11-21-reduce-worker.jpg)
 
-# 背景
+## 背景
 
 接着上一篇[《Java多线程系列-开始给主线程减压》](http://www.longtask.net/2017/11/21/reduce-from-main/)我们提出的问题，工作线程做了所有的事情，不够专注，就好比我开了一家餐厅，我即当前台接待用户、又当厨师烧菜、又当服务员上菜，等一个用户结账走人后再去接待下一个用户，只有我这一个线程去忙活，苦逼啊，这次，我们就雇一个员工替我分单压力，即再创建一个新的线程去工作。
 
-# 需求
+## 需求
 
 1. 新开一个线程，专门用来监听8080端口，监听到有新的请求Socket后，将Socket交给工作线程去处理请求，这个新的线程我们命名为Acceptor-接收器；
 2. 工作线程只处理Socket请求，不做监听的事情；
 
-# 功能开发
+## 功能开发
 这一版我们开始接触线程的一些新知识点：比如我们引入了共享变量、线程通信，虽然也会用synchronized关键字，但是本节还不会涉及到线程同步及互斥；
 
-## 加入监听线程
+### 加入监听线程
 
 Acceptor-专门监听端口接收Socket，将接收到的Socket交给工作线程处理；
 
@@ -76,7 +76,7 @@ public class Acceptor implements Runnable {
 
 完整代码实现：[WebServer.java](https://github.com/studyingsina/concurrency-programming-demo/blob/master/src/main/java/com/studying/concurrency/v3/WebServer.java)
 
-## 工作线程
+### 工作线程
 
 工作线程不再监听端口，只去一个固定的地方取Acceptor收到的Socket，这个固定的地方，我们暂时用一个成员变量存储；
 
@@ -107,9 +107,9 @@ public class Worker implements Runnable {
 
 ```
 
-## 知识点
+### 知识点
 
-### 守护线程
+#### 守护线程
 工作线程，我们将其置为守护线程，让它在后台慢慢运行就可以了；
 
 监听器线程，我们将其置为非守护线程，那守护线程和非守护线程有什么区别吗？我们来看下Java Thread中setDaemon方法的说明：
@@ -119,7 +119,7 @@ public class Worker implements Runnable {
 
 如果JVM中所有的线程都是守护线程了，那么JVM就会退出，所以为了不让我们的JVM退出，至少需要有一个非守护线程，这里便是我们的监听器线程；
 
-### 线程通信
+#### 线程通信
 此版本我们涉及两个线程：监听器线程和工作线程，并且这个两个线程是有依赖关系的，即监听器线程先要收到一个Socket，然后再将这个Socket给工作线程，工作线程去处理，这就涉及到不同线程之间的通信问题了，此处我是通过一个共享变量来实现的，即监听器线程拿到Socket后、交给WebServer.socket变量，然后工作线程从WebServer.socket变量上取值，从这里，你可能已经看到相似的场景了，一个线程接收数据(Socket)、一个线程获取数据(Socket)、有一个地方(共享变量)存储数据，这不是典型的生产者、消费者模型么？别急，这个后边会讲到，此处还是按简单的方式来处理；
 
 线程通信，Java给我们提供的一种方案是wait/nofity机制，我们此处正是用的这种方案：
@@ -172,13 +172,13 @@ private synchronized Socket await() throws Exception {
 
 注意此处我们通知用的nofity，还一个notifyAll方法我们为什么不用呢？因为读线程只有一个、写线程也只有一个，所以用notify就够了，如果读写线程有多个，那么我们就得用notifyAll了；
 
-# 问题
+## 问题
 
 到这一版，我们已经实现监听器线程和工作线程的分离，使其各司其职，但是还存在着问题：
 
 1. 我们请求依旧是串行化处理，因为即使监听器线程接收多个Socket，但是工作线程只有一个，工作线程处理一个Socket，监听器线程才能放下一个，其实监听器线程会出现忙等；
 
-# 感想
+## 感想
 
 遇到问题、解决问题，其实一些事情并没有想像中的复杂，当我们不了解的时候，只因我们没有遇到那个场景；
 

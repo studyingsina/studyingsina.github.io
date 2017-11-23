@@ -41,7 +41,9 @@ tags:
 ### 开始给工作线程减压
 [《Java多线程系列-开始给工作线程减压》](http://www.longtask.net/2017/11/21/reduce-worker/)
 
-### 解决串行化问题
+### 缓解忙等问题
+
+[《Java多线程系列-缓解忙等问题》](http://www.longtask.net/2017/11/21/reduce-worker/)
 
 ### WebServer简单重构
 

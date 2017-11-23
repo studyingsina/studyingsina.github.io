@@ -13,18 +13,18 @@ tags:
 
 ![Reduce-Main](/css/pics/2017-11-21-reduce-from-main.jpg)
 
-# 背景
+## 背景
 
 接着上一篇[《Java多线程系列-先写一个简单WebServer》](http://www.longtask.net/2017/11/20/a-simple-webserver/)我们提出的问题，main线程做了所有工作，为了更好的处理请求，我们给main线程减压，加入一个工作线程分担main线程处理HTTP请求的任务，让main线程只做一些准备性的工作，比如：准备启动参数、环境变量等等.
 
-# 需求
+## 需求
 
 1. 创建一个工作线程去处理HTTP请求，将main线程做的事情和工作线程做的事情分离；
 2. 随着功能的完善，采用面向对象的思想去组织我们的代码，抽象出一些概念；而不是像V1版本所有的代码都放在一个类中；
 
-# 功能开发
+## 功能开发
 
-## 加入工作线程
+### 加入工作线程
 
 此时，我们开始进入Java Thread编程了。
 
@@ -63,10 +63,10 @@ public class Worker implements Runnable {
 
 完整代码实现：[BootstrapV2.java](https://github.com/studyingsina/concurrency-programming-demo/blob/master/src/main/java/com/studying/concurrency/v2/BootstrapV2.java)
 
-## 做个重构
+### 做个重构
 随着功能的不断完善，我们的代码量也越来越多，将所有代码耦合在一个类中显然不是一个好的办法，这一版当中我们采用面向对象的思想去做个重构，关键点：职责单一；
 
-### Bootstrap-启动器
+#### Bootstrap-启动器
 
 启动器，只做WebServer启动的工作，比如准备参数、环境变量、启动工作线程等，不做具体处理HTTP请求的任务；
 
@@ -108,7 +108,7 @@ public class Bootstrap {
 
 ```
 
-### WebServer-Web服务器
+#### WebServer-Web服务器
 
 WebServer，负责WebServer对外提供HTTP的服务，比如持有ServerSocket、将具体任务的执行代理给工作线程等；
 
@@ -145,7 +145,7 @@ public class WebServer {
 
 ```
 
-### Worker-处理HTTP请求的工作者
+#### Worker-处理HTTP请求的工作者
 
 Worker，工作者，监听8080端口，处理HTTP请求，这里我将其作为WebServer的内部类；
 
@@ -171,14 +171,14 @@ public class Worker implements Runnable {
 
 ```
 
-# 问题
+## 问题
 
 到这一版，我们已经实现main线程和工作线程的分离，使其各司其职，但是还存在着问题：
 
 1. 工作线程还是既监听8080端口，又处理HTTP请求；
 2. 因为工作线程做的事情太多，所以效率不高，我们请求依旧是串行化处理；
 
-# 感想
+## 感想
 
 经过这一版，我们的代码相对来说清晰一些了，并且也开始接触Java Thread编程了，虽然只是简单的new Thread()，慢慢来；
 
