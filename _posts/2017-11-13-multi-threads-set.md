@@ -56,7 +56,7 @@ tags:
 
 [《Java多线程系列-增加工作线程-线程池》](http://www.longtask.net/2017/11/23/thread-pool/)
 
-### JCU API实现
+### JUC API实现
 
 ## 知识点
 
@@ -64,7 +64,7 @@ tags:
 
 JDK1.5前的实现；
 
-JCU的实现； 
+JUC的实现； 
 
 ## 工作中的一些案例
 
