@@ -26,7 +26,7 @@ tags:
 
 ### 加入工作线程
 
-此时，我们开始进入Java Thread编程了。
+此时，开始进入Java Thread编程了。
 
 主要代码如下：
 
@@ -64,7 +64,7 @@ public class Worker implements Runnable {
 完整代码实现：[BootstrapV2.java](https://github.com/studyingsina/concurrency-programming-demo/blob/master/src/main/java/com/studying/concurrency/v2/BootstrapV2.java)
 
 ### 做个重构
-随着功能的不断完善，我们的代码量也越来越多，将所有代码耦合在一个类中显然不是一个好的办法，这一版当中我们采用面向对象的思想去做个重构，关键点：职责单一；
+随着功能的不断完善，代码量也越来越多，将所有代码耦合在一个类中显然不是一个好方法，这一版当中我们采用面向对象的思想去做个重构，关键点：职责单一；
 
 #### Bootstrap-启动器
 
@@ -176,9 +176,9 @@ public class Worker implements Runnable {
 到这一版，我们已经实现main线程和工作线程的分离，使其各司其职，但是还存在着问题：
 
 1. 工作线程还是既监听8080端口，又处理HTTP请求；
-2. 因为工作线程做的事情太多，所以效率不高，我们请求依旧是串行化处理；
+2. 因为工作线程做的事情太多，所以效率不高，请求依旧是串行化处理；
 
 ## 感想
 
-经过这一版，我们的代码相对来说清晰一些了，并且也开始接触Java Thread编程了，虽然只是简单的new Thread()，慢慢来；
+经过这一版，代码相对来说清晰一些了，并且也开始接触Java Thread编程了，虽然只是简单的new Thread()，慢慢来；
 

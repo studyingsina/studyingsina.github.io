@@ -113,9 +113,9 @@ public class SimpleQueue<E> {
 
 因为我们的队列是线程安全的，所以WebServer.assign和await方法便无需再加synchronized的关键字了；
 
-在队列中我们的通知方法依旧用的notify方法，为什么不用notifyAll方法呢？因为监听器线程（生产者线程）只有一个、工作线程（消费者线程）也只有一个；
+在队列中的通知方法依旧用的notify方法，为什么不用notifyAll方法呢？因为监听器线程（生产者线程）只有一个、工作线程（消费者线程）也只有一个；
 
-还有个细微点要注意的就是：synchronized关键字上一节我们也用到的，但是和本节的synchronized关键字所表示的锁对象是不一样的，上一节我们的WebServer拥有一个Socket变量，我们的锁对象是WebServer、由WebServer自己控制同步、阻塞，而本节我们用了队列，锁对象是加在队列上的；
+还有个细微点要注意的就是：synchronized关键字上一节也用到了，但是和本节的synchronized关键字所表示的锁对象是不一样的，上一节WebServer拥有一个Socket变量，的锁对象是WebServer、由WebServer自己控制同步、阻塞，而本节使用了队列，锁对象是加在队列上的；
 
 ```Java
 
