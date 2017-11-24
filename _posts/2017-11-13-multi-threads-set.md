@@ -32,11 +32,14 @@ tags:
 
 ## 为什么需要多线程
 
+因为一个人的力量有限、群众的力量更大；
+
 ## 多线程编程面临的问题
 
-线程互斥与同步
+1. 线程互斥与同步
+2. 线程通信
 
-线程通信
+理解这两个问题的关键点在于：共享变量；
 
 ## 实例学习多线程
 
@@ -53,25 +56,33 @@ tags:
 [《Java多线程系列-缓解忙等问题》](http://www.longtask.net/2017/11/21/reduce-worker/)
 
 ### 增加工作线程-线程池
-
 [《Java多线程系列-增加工作线程-线程池》](http://www.longtask.net/2017/11/23/thread-pool/)
 
 ### JUC API实现
+[《Java多线程系列-JUC-API实现》](http://www.longtask.net/2017/11/24/juc/)
 
 ## 知识点
 
-### Java中多线程编程提供的解决方案
+Java中多线程编程提供的解决方案
 
-JDK1.5前的实现；
-
-JUC的实现； 
+1. JDK1.5前的实现，即：synchronized、wait、notify等机制；
+2. JUC的实现，即：lock、condition等机制；； 
 
 ## 工作中的一些案例
 
 # 总结
+
+我不是一个聪明的人，至少我刚学编程的时候，对多线程编程这块理解的很慢，抓不住问题的核心点，以至于做了一些无用功，当时特别希望有个师傅、学长之类的人能指导一下、如果能手把手教就更好了；
+
+写的这个小Demo希望可以给初学者一些帮助，当然也顺便梳理下自己的知识点；
+
+如果后续有时间，会将这一系列录制成一个视频...；
+
+如果再有时间，会再写其它系列文章：比如讲些线程底层原理、JVM实战等等；
 
 # 引用
 
 1. [《How Tomcat Works》](https://book.douban.com/subject/1943128/)
 2. [《Java Thread Programming》](https://book.douban.com/subject/1864049/)
 3. [《Tomcat源码》](http://tomcat.apache.org/)
+4. [《JCU源码》](http://www.java.com/)
