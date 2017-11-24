@@ -10,7 +10,7 @@ description: 柒八块表的博客
 # baseurl: "" # the subpath of your site, e.g. /blog/
 # url: "http://yourdomain.com" # the base hostname & protocol for your site
 # twitter_username: jekyllrb
-github_username: mestudyingsina 
+github_username: studyingsina 
 baseurl: "" # the subpath of your site, e.g. /blog
 category_dir: category/
 tag_dir: tag/
