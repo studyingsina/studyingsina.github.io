@@ -67,10 +67,6 @@ tags:
 
 如果你平时需要将一些片段代码保存、留待后用、查看，那么试试Gist，比如这个场景：开发人员在写文章的时候，要在文章中嵌入一些代码片段，用Gist就恰好，看下边这段代码：
 
-如果你所在网络能访问Gist，长这样：
-
-{% gist eda3e3f03521f93ed9075bb8229619ad %}
-
 如果你所在网络不能访问Gist，看截图：
 
 ![Gist](/css/pics/2017-12-06-gist.jpg)
@@ -95,7 +91,7 @@ Atom是想发展成程序猿日常工具的全家桶么？
 
 [《视频》](https://www.bilibili.com/video/av11116892/)
 
-<iframe src="http://www.bilibili.com/video/av11116892/" frameborder=0 allowfullscreen></iframe>
+<iframe width="420" height="315" src="http://www.bilibili.com/video/av11116892/" frameborder=0 allowfullscreen></iframe>
 
 现在市场里已经有Travis CI、Sentry等工具可用，这完全是模仿App Store的套路来的；
 
