@@ -89,9 +89,7 @@ Atom是想发展成程序猿日常工具的全家桶么？
 
 工具市场有什么用呢？直接上官方宣传视频，一眼明了；
 
-[《视频》](https://www.bilibili.com/video/av11116892/)
-
-<iframe width="420" height="315" src="http://www.bilibili.com/video/av11116892/" frameborder=0 allowfullscreen></iframe>
+[![MarketPlace](/css/pics/2017-12-07-marketplace.jpg)](https://www.bilibili.com/video/av11116892)
 
 现在市场里已经有Travis CI、Sentry等工具可用，这完全是模仿App Store的套路来的；
 
