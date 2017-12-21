@@ -58,15 +58,15 @@ tags:
 ### 增加工作线程-线程池
 [《Java多线程系列-增加工作线程-线程池》](http://www.longtask.net/2017/11/23/thread-pool/)
 
-### JUC API实现
-[《Java多线程系列-JUC-API实现》](http://www.longtask.net/2017/11/24/juc/)
+### JCU API实现
+[《Java多线程系列-JCU-API实现》](http://www.longtask.net/2017/11/24/jcu/)
 
 ## 知识点
 
 Java中多线程编程提供的解决方案
 
 1. JDK1.5前的实现，即：synchronized、wait、notify等机制；
-2. JUC的实现，即：lock、condition等机制；； 
+2. JCU的实现，即：lock、condition等机制；； 
 
 ## 工作中的一些案例
 
