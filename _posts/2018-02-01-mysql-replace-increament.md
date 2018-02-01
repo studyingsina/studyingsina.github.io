@@ -119,3 +119,7 @@ SET @@SESSION.GTID_NEXT= 'f3aa695d-1a7e-11e7-84f7-00228ce195da:19314137'/*!*/;
 #180104 11:00:02 server id 32145168  end_log_pos 959417187 CRC32 0xbd88c985     Query   thread_id=2955584       exec_time=0     error_code=0
 
 ```
+
+## 原因
+
+待查找；
