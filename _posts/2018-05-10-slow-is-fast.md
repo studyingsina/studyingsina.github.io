@@ -2,9 +2,9 @@
 layout: post
 title: "慢就是快"
 categories: 
-- Tech
+- Life
 tags:
-- Tech
+- Life
 ---
 
 * content
