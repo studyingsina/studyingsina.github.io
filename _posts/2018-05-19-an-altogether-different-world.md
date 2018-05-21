@@ -12,6 +12,10 @@ tags:
 
 ![别有天地](/css/pics/2018-05-19-an-different-world.jpg)
 
+## 世界变了
+
+## 薪尽火传
+
 ## WWW
 
 ## 资本的力量
