@@ -29,7 +29,7 @@ tags:
 
 Acceptor-专门监听端口接收Socket，将接收到的Socket交给工作线程处理；
 
-```Java
+```java
 
 /**
  * 必需先启动工作线程,再启动监听线程.
@@ -80,7 +80,7 @@ public class Acceptor implements Runnable {
 
 工作线程不再监听端口，只去一个固定的地方取Acceptor收到的Socket，这个固定的地方，我们暂时用一个成员变量存储；
 
-```Java
+```java
 
 /**
  * 处理HTTP请求的工作者.
@@ -137,7 +137,7 @@ public class Worker implements Runnable {
 
 再来看下我们的代码，注释的已经很清楚了：
 
-```Java
+```java
 
 /**
  * 由监听线程给socket赋值,以备工作线程从中取值进行处理.

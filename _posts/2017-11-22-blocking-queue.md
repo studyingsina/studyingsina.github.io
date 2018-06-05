@@ -31,7 +31,7 @@ tags:
 
 一个简单的阻塞队列:先进先出,线程安全,不支持扩容,用数组实现.
 
-```Java
+```java
 
 /**
  * 一个简单的阻塞队列(先进先出),线程安全,不支持扩容,用数组实现.
@@ -117,7 +117,7 @@ public class SimpleQueue<E> {
 
 还有个细微点要注意的就是：synchronized关键字上一节也用到了，但是和本节的synchronized关键字所表示的锁对象是不一样的，上一节WebServer拥有一个Socket变量，的锁对象是WebServer、由WebServer自己控制同步、阻塞，而本节使用了队列，锁对象是加在队列上的；
 
-```Java
+```java
 
 /**
  * 由监听线程往队列中放入socket,以备工作线程从中取值进行处理.

@@ -32,7 +32,7 @@ tags:
 
 所以去Debug下，看看到底在哪一行把这精度给搞丢了，当我们一步步跟到MySQL JDBC Driver这一个方法时，发现：
 
-```Java
+```java
 
 private synchronized void setTimestampInternal(int parameterIndex, Timestamp x, Calendar targetCalendar, TimeZone tz, boolean rollForward) throws SQLException {
     if(x == null) {

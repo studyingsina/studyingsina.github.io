@@ -64,7 +64,7 @@ Thrift自定义了一套协议，根据IDL生成的Thrift类在服务调用端�
 对Thrift生成的Iface做一层代理，
 业务方如下使用：
 
-```Java
+```java
     // 生成Iface的Proxy.
     HelloWorldService proxyService = HelloWorldServiceProxy();
     
@@ -74,7 +74,7 @@ Thrift自定义了一套协议，根据IDL生成的Thrift类在服务调用端�
 
 HelloWorldServiceProxy的say方法如下实现：
 
-```Java
+```java
     // 代理类的实现
     public Result say() throws TException {
         // 获取Mock数据,比如通过http接口获取Mock Server的Mock数据.
@@ -95,7 +95,7 @@ HelloWorldServiceProxy的say方法如下实现：
 ![thrift-mock-server-me](/css/pics/2017-07-17-thrift-mock-server-me.png)
 
 贴一段主要的代码逻辑：
-```Java
+```java
 
     private void mockDaynamicGetStrResult(TProtocol oprot, TMessage msg) throws TException {
        try {

@@ -19,7 +19,7 @@ tags:
 
 业务上需要一个自增序号，于是就用MySQL InnoDB 表实现了一个；表结构如下：
 
-```Java
+```java
 
 CREATE TABLE `seq` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -37,7 +37,7 @@ CREATE TABLE `seq` (
 
 理论上时间越早、seq表的id就越小，但是今天发现两条记录刚好相反：（线上数据库的事务隔离级别为 REPEATABLE-READ，innodb_autoinc_lock_mode为1）
 
-```Java
+```java
 
 mysql> select * from seq where id in (5237, 5238);
 +------+--------+----------------------------+
@@ -51,7 +51,7 @@ mysql> select * from seq where id in (5237, 5238);
 
 下面是两条数据插入时的Binlog日志：
 
-```Java
+```java
 
 SET TIMESTAMP=1515034802.736385/*!*/;
 BEGIN
