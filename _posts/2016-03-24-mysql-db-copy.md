@@ -4,7 +4,7 @@ title: "mysql db copy"
 categories: 
 - Tech
 tags:
-- Tech DB
+- DB
 ---
 
 * content
