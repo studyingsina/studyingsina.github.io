@@ -50,7 +50,6 @@ tags:
 ### 代码实现
 其实看明白上边的处理流程，剩下的便是用Java提供的API去实现了，比较简单，贴一段主要代码，完整代码后边有链接：
 
-```Java
 
     /**
      * 接收客户端的Socket,解析输入字节流,并返回结果.
@@ -138,7 +137,6 @@ tags:
         return data;
     }
 
-```
 
 完整代码实现：[BootstrapV1.java](https://github.com/studyingsina/concurrency-programming-demo/blob/master/src/main/java/com/studying/concurrency/v1/BootstrapV1.java)
 

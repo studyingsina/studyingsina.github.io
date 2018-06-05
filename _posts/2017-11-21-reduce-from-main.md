@@ -30,7 +30,7 @@ tags:
 
 主要代码如下：
 
- ```Java
+ ```java
 
 /**
  * 启动处理线程.
@@ -72,7 +72,7 @@ public class Worker implements Runnable {
 
 完整代码实现：[Refactor](https://github.com/studyingsina/concurrency-programming-demo/tree/master/src/main/java/com/studying/concurrency/v2/refactor)
 
-```Java
+```java
 
 /**
  * Created by junweizhang on 17/11/21.
@@ -112,7 +112,7 @@ public class Bootstrap {
 
 WebServer，负责WebServer对外提供HTTP的服务，比如持有ServerSocket、将具体任务的执行代理给工作线程等；
 
-```Java
+```java
 
 public class WebServer {
 
@@ -149,7 +149,7 @@ public class WebServer {
 
 Worker，工作者，监听8080端口，处理HTTP请求，这里我将其作为WebServer的内部类；
 
-```Java
+```java
 
 /**
  * 处理HTTP请求的工作者.
