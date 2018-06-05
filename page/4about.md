@@ -2,7 +2,7 @@
 layout: page
 title: About
 permalink: /about/
-icon: glyphicon-heart
+icon: heart
 ---
 
 小学时，在地里干活，一直在思考一个问题，课本上学的数学、语文对我干活有用吗？
