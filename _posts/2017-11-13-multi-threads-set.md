@@ -5,7 +5,7 @@ description: "Java 多线程 Multi Thread"
 categories: 
 - Tech
 tags:
-- Tech
+- Tech 多线程
 ---
 
 * content
