@@ -5,7 +5,7 @@ description: "Java Mybatis JDBC 更新数据丢失毫秒精度"
 categories: 
 - Tech
 tags:
-- Tech
+- DB
 ---
 
 * content

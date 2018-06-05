@@ -2,9 +2,9 @@
 layout: post
 title: "MySQL Replace 自增问题"
 categories: 
-- Reading
+- Tech
 tags:
-- Reading
+- DB
 ---
 
 * content
