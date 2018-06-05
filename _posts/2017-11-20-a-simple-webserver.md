@@ -2,10 +2,8 @@
 layout: post
 title: "Java多线程系列-先写一个简单WebServer"
 description: "Java 多线程 线程池"
-categories: 
-- Tech
-tags:
-- Tech 多线程
+categories: Tech
+tags: Tech 多线程
 ---
 
 * content

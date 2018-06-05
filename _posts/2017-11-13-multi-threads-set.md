@@ -1,11 +1,10 @@
 ---
 layout: post
 title: "Java多线程系列"
+date:   2017-11-13 15:14:54
 description: "Java 多线程 Multi Thread"
-categories: 
-- Tech
-tags:
-- Tech 多线程
+categories: Tech
+tags: Tech 多线程
 ---
 
 * content
