@@ -17,8 +17,6 @@ tags: Todo
 
 [《Spring Aop Deadlock Case》](/2017/09/12/spring-aop-deadlock/)
 
-[《设计模式-责任链之抛砖引玉(未完)》](/2017/06/11/chain-of-responsibility-brick-to-jade/)
-
 [《Spring中几个关键接口》](/2017/06/03/spring-aware/)
 
 ### 互联网
