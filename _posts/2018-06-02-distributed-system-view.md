@@ -16,6 +16,10 @@ tags:
 
 如何系统的学习分布式？答：从实际问题中学习、引伸出知识点、由点及面、学习一些经典的分布式系统案例、以输出倒逼输入(以写博客倒逼学习)；
 
+什么是分布式系统？
+
+Web集群是不是？Redis集群是不是（通过Redis客户端做一致性Hash）？
+
 实践当中是遇到了什么问题才引出分布式这个概念？什么情况适用于分布式？不用分布式行不行、有什么可替代方案？
 
 单机的硬件配置是有上限的，当计算量大到一定程度时，通过提升单机硬件配置已经不能很好的提升处理效率时，就需要分而治之，将大计算量的任务切分成若干个小任务、这些小任务被分到多台机器上执行、最后将多台机器的执行结果进行合并；分布式的目标是为了提升效率吗？
@@ -39,3 +43,9 @@ tags:
 ## 到哪里去
 
 
+https://www.zhihu.com/question/23645117
+http://www.cnblogs.com/xybaby/tag/distributed%20system/
+http://kabike.iteye.com/blog/2168852
+https://www.cnblogs.com/captainlucky/p/4720986.html
+https://blog.csdn.net/lxf310/article/details/22398655
+http://www.yunweipai.com/archives/17357.html

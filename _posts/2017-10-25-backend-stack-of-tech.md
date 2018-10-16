@@ -57,24 +57,25 @@ tags:
 当然还有很多命令，先会用基本的；
 
 ### Java基础
-Java语法肯定是要会的；
+Java语法、多线程、集合基本的API肯定是要会的；
+JVM的知识要有些了解；
 
-### MVC框架
-SpringMVC
-
-### 应用层框架
+### 框架
 Spring
+SpringMVC
 
 ### ORMapping
 Mybatis
 
 ### DB
 MySQL;
-
+索引原理要了解；
 基本增删改查要会；
 
 ### Web容器
 jetty
+tomcat
+可以了解下Spring Boot；
 
 ### 缓存
 Redis
@@ -87,6 +88,8 @@ Maven
 
 ### RPC
 Thrift
+其它的如gRPC、Dubbo都可以了解；
+可以再了解下Spring Cloud;
 
 ### 定时任务
 Quartz
@@ -94,12 +97,17 @@ Quartz
 ### 消息
 Kafka
 
+### 数据
+实时数据处理:Storm、Spark、Flink；
+列式存储:HBase；
+可以了解下Hadoop系列；
+
 ### 开发工具
 Idea
 
 ## 最后
 当然，以上列出的是不全的，更多的还得工作中学习。
 
-另，如果能早实习就早实习，大一能实习就大一，大二不能就大二，越早接触社会的同学、走的越远、飞的越高。
+另，个人建议如果能早实习就早实习。
 
-知行合一，读万卷书、行万里路。
+读万卷书、行万里路。
