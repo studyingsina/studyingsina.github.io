@@ -243,7 +243,7 @@ jetty的调用场景是：为了支持Servlet规范中的注解方式（使得�
 
 总结下排查问题的大概思路：
 
-1. 确认哪些进程占用了swapa;（定位到是java进程）
+1. 确认哪些进程占用了swap;（定位到是java进程）
 2. 理论上java进程不应用占用6.5G物理内存，通过gperftools工具查看java进程内存分配；（排除堆内内存问题，找到java.util.zip.Inflater类分配内存较多）
 3. 通过btrace定位哪些地方调用了java.util.zip.Inflater类；（排除监控组件的问题、锁定jetty启动调用）
 4. 尝试不同解决方法；
