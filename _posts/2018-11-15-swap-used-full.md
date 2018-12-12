@@ -113,7 +113,7 @@ export HEAP_PROFILE_INUSE_INTERVAL=4048576000
 ```
 可以看出Java_java_util_zip_Inflater_inflateBytes方法分配了比较多的内存，再分析其它heap文件，也都是这个方法，所以从这个方法入手继续追踪，需要找到是业务哪行代码调用了Inflater类，这里我们使用[btrace](https://github.com/btraceio/btrace)这个工具，btace脚本如下；
 
-```Java
+```
 
 import static com.sun.btrace.BTraceUtils.*;
 import com.sun.btrace.annotations.*;
