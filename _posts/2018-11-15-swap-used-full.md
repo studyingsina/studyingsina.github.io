@@ -136,11 +136,11 @@ public class BtracerInflater{
 
 ```
 
-通过打印inflate方法的调用堆栈，可以找到调用出处，找到两处调用，一处是公司的监控组件、一处是jetty启动时扫描jar包会用；
+通过打印inflate方法的调用堆栈，找到两处调用：一处是公司的监控组件、一处是jetty启动时扫描jar包会用；
 
-先分析公司的监控组件，监控组件会每隔1分钟去服务器拉取监控配置信息（比如路由IP地址、客户端连接超时时间、长SQL阈值配置等），而服务器返回的配置信息是xml格式，在解析xml时会用到inflate方法，于是我们通过禁用监控组件、重启应用、发现java应用所占的物理内容并没有减少，所以排队是监控组件的问题；
+先分析公司的监控组件，监控组件会每隔1分钟去服务器拉取监控配置信息（比如路由IP地址、客户端连接超时时间、长SQL阈值配置等），而服务器返回的配置信息是xml格式，在解析xml时会用到inflate方法，于是我们通过禁用监控组件、重启应用、发现java应用所占的物理内容并没有减少，所以排除是监控组件的问题；
 
-再来看btrace打印出的jetty的调用栈：
+再来看btrace打印的jetty调用栈：
 
 ```
 Who call java.util.zip.Inflater's methods :
@@ -180,11 +180,17 @@ com.xxx.Bootstrap.main(Bootstrap.java:101)
 jetty的调用场景是：为了支持Servlet规范中的注解方式（使得不再需要在web.xml文件中进行Servlet的部署描述，简化开发流程），jetty在启动时会扫描class、lib包，将使用注解方式声明的Servlet、Listener注册到jetty容器，在扫描jar包的时候调用了inflate，分配了大量的内存，此时通过关键词搜索到[Memory leak while scanning annotations](https://github.com/eclipse/jetty.project/issues/575)，这篇文章给出了两种解决方法，一种是评论处所说，禁用缓存（说是jdk1.8的bug）：
 
 >Here's a link to the java bugs database issue: http://bugs.java.com/bugdatabase/view_bug.do?bug_id=8156014
+
 >I'd like to be able to comment on it, but I can't seem to find a link to allow me to do that.
+
 >The comments I'd like to add are:
+
 >the problem is still reproduceable as of jdk8u112
+
 >the problem seems to be fixed in jdk9: I tested jdk9ea+149 and couldn't reproduce
+
 >I've tried some workarounds for jdk8: it seems the ServiceLoader impl uses the jarurlconnection caching, so it may be of some benefit to try to disable url caching (although not sure of the effects on performance).
+
 >Try creating an xml file (eg called "caches.xml") with the following contents:
 
 ```
@@ -219,7 +225,6 @@ jetty的调用场景是：为了支持Servlet规范中的注解方式（使得�
 ```
 <!-- <Item>org.eclipse.jetty.annotations.AnnotationConfiguration</Item> -->
 <!-- Item>com.xxx.boot.RJRAnnotationConfiguration</Item> -->
-
 ```
 
 再重启应用，发现内存使用由6.5G降到了3.9G，并且应用运行稳定后不再占用swap，如图：
@@ -238,15 +243,19 @@ jetty的调用场景是：为了支持Servlet规范中的注解方式（使得�
 
 总结下排查问题的大概思路：
 
-1.确认哪些进程占用了swapa;（定位到是java进程）
-2.理论上java进程不应用占用6.5G物理内存，通过gperftools工具查看java进程内存分配；（排除堆内内存问题，找到java.util.zip.Inflater类分配内存较多）
-3.通过btrace定位哪些地方调用了java.util.zip.Inflater类；（排除监控组件的问题、锁定jetty启动调用）
-4.尝试不同解决方法；
+1. 确认哪些进程占用了swapa;（定位到是java进程）
+2. 理论上java进程不应用占用6.5G物理内存，通过gperftools工具查看java进程内存分配；（排除堆内内存问题，找到java.util.zip.Inflater类分配内存较多）
+3. 通过btrace定位哪些地方调用了java.util.zip.Inflater类；（排除监控组件的问题、锁定jetty启动调用）
+4. 尝试不同解决方法；
 
-*最后物理内存是降了，但是这就是最优解吗？这种方法是不是一种逃避解决方案（相当于不能使用Servlet注解方式）？
-*有没有更好的解决方法？
-*如果说是jdk1.8的问题，那么其它地方用jarurlconnection cache的地方是不是都存在内存泄漏？1.7的实现和1.9的实现是什么样的？
-*其它Servlet容器会不会存在这种问题？Tomcat也实现了Servlet规范，是如何实现的？
+* 最后物理内存是降了，但是这就是最优解吗？这种方法是不是一种逃避解决方案（相当于不能使用Servlet注解方式）？
+* 有没有更好的解决方法？
+* 如果说是jdk1.8的问题，那么其它地方用jarurlconnection cache的地方是不是都存在内存泄漏？1.7的实现和1.9的实现是什么样的？
+* 其它Servlet容器会不会存在这种问题？Tomcat也实现了Servlet规范，是如何实现的？
 
 ## 发散
+虽然最后貌似找到了一种解决方法，但是还有很多疑问，当我们做其它事情的时候，是不是也是像排查这问题这样，不断怀疑-->验证-->思考-->尝试，直至找到一个相对满意的结果，但不一定最优的结果。
 
+像马云马老师在创业未成功时，是不是也是不断的摸索，取得一定结果了、才知道走的路是相对正确的？
+
+那么到底是因为得到了结果才相信、还是因为相信才有的结果？
