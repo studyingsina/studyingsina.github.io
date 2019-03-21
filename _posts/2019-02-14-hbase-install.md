@@ -43,7 +43,7 @@ cd hbase-2.0.4
 
 默认不配置Hbase和ZK的路径，HBase会在/tmp目录下自动创建数据写入的文件夹，一些操作系统会在机器重启时自动清除/tmp目录下的内容，会导致数据丢失；
 
-```XML
+```shell
 
 <configuration>
   <property>
@@ -104,7 +104,7 @@ cd hbase-2.0.4
 
 修改配置文件conf/hbase-site.xml:
 
-```XML
+```shell
 
 <configuration>
   <property>
