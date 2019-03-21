@@ -28,7 +28,7 @@ tags:
 
 选择一个版本下载[Apache Download Mirrors](https://www.apache.org/dyn/closer.lua/hbase/)，此处我下载的是hbase-2.0.4-bin.tar.gz；
 
-```Java
+```shell
 
 tar xzvf hbase-2.0.4-bin.tar.gz
 cd hbase-2.0.4
