@@ -57,17 +57,6 @@ cd hbase-2.0.4
   <property>
     <name>hbase.unsafe.stream.capability.enforce</name>
     <value>false</value>
-    <description>
-      Controls whether HBase will check for stream capabilities (hflush/hsync).
-
-      Disable this if you intend to run on LocalFileSystem, denoted by a rootdir
-      with the 'file://' scheme, but be mindful of the NOTE below.
-
-      WARNING: Setting this to false blinds you to potential data loss and
-      inconsistent system state in the event of process and/or node failures. If
-      HBase is complaining of an inability to use hsync or hflush it's most
-      likely not a false positive.
-    </description>
   </property>
 </configuration>
 
@@ -85,4 +74,90 @@ cd hbase-2.0.4
 
 ## 伪分布式模式
 
+
+### zookeeper
+
+下载并启动zookeeper，[参见](https://zookeeper.apache.org/doc/r3.4.13/zookeeperStarted.html)
+
+### hadoop
+
+下载并安装hadoop，[参见](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html)
+
+此处我用的是hadoop伪分布式模式；
+
+启动成功后，可以访问[Hadoop Web UI](http://localhost:50070/dfshealth.html#tab-overview)
+
+通过jps命令可以看到nameNode和dataNode线程：
+
+```shell
+
+➜  hadoop-2.7.7 jps
+70433 Jps
+70176 DataNode
+70087 NameNode
+69274 QuorumPeerMain
+70285 SecondaryNameNode
+
+```
+
+### hbase
+
+修改配置文件conf/hbase-site.xml:
+
+```XML
+
+<configuration>
+  <property>
+    <name>hbase.rootdir</name>
+    <value>hdfs://localhost:9000/hbase</value>
+  </property>
+  <property>
+    <name>hbase.cluster.distributed</name>
+    <value>true</value>
+  </property>
+</configuration>
+
+```
+
+执行hbase启动命令:bin/start-hbase.sh，启动成功执行jps命令可以看到HMaster和HRegionServer线程，如下：
+
+```shell
+
+➜  hbase-2.0.4 jps
+70176 DataNode
+70707 Jps
+70547 HQuorumPeer
+70087 NameNode
+70600 HMaster
+69274 QuorumPeerMain
+70669 HRegionServer
+70285 SecondaryNameNode
+
+```
+
+此时也可以通过[Hbase Web UI](http://localhost:16010/master-status)查看；
+
+到hadoop安装目录执行./bin/hadoop fs -ls /hbase 命令，可以看到HDFS中存在/hbase目录，如下：
+
+```shell
+➜  hadoop-2.7.7 ./bin/hadoop fs -ls /hbase
+19/03/21 21:31:26 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Found 13 items
+drwxr-xr-x   - junweizhang supergroup          0 2019-03-21 21:30 /hbase/.hbck
+drwxr-xr-x   - junweizhang supergroup          0 2019-03-21 21:30 /hbase/.tmp
+drwxr-xr-x   - junweizhang supergroup          0 2019-03-21 21:30 /hbase/MasterProcWALs
+drwxr-xr-x   - junweizhang supergroup          0 2019-03-21 21:30 /hbase/WALs
+drwxr-xr-x   - junweizhang supergroup          0 2019-03-21 21:30 /hbase/archive
+drwxr-xr-x   - junweizhang supergroup          0 2019-03-21 21:30 /hbase/corrupt
+drwxr-xr-x   - junweizhang supergroup          0 2019-03-21 21:30 /hbase/data
+drwxr-xr-x   - junweizhang supergroup          0 2019-03-21 21:30 /hbase/hbase
+-rw-r--r--   3 junweizhang supergroup         42 2019-03-21 21:30 /hbase/hbase.id
+-rw-r--r--   3 junweizhang supergroup          7 2019-03-21 21:30 /hbase/hbase.version
+drwxr-xr-x   - junweizhang supergroup          0 2019-03-21 21:30 /hbase/mobdir
+drwxr-xr-x   - junweizhang supergroup          0 2019-03-21 21:30 /hbase/oldWALs
+drwx--x--x   - junweizhang supergroup          0 2019-03-21 21:30 /hbase/staging
+
+```
+
+然后便可以通过hbase shell执行hbase命令了，[参见](http://hbase.apache.org/book.html#shell_exercises)
 
