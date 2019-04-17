@@ -10,7 +10,7 @@ tags:
 * content
 {:toc}
 
-![hbase-install](/css/pics/2019-02-14-hbase_logo_with_orca_large.png)
+![best-practise](/css/pics/2019-03-08-biz-sys-way.png)
 
 ## 背景
 
@@ -28,4 +28,5 @@ tags:
 
 ## 多系统间数据一致性
 
-
+## 异步处理业务
+发送邮件、发送失败如何处理；

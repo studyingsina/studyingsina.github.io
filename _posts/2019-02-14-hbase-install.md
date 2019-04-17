@@ -161,3 +161,9 @@ drwx--x--x   - junweizhang supergroup          0 2019-03-21 21:30 /hbase/staging
 
 然后便可以通过hbase shell执行hbase命令了，[参见](http://hbase.apache.org/book.html#shell_exercises)
 
+### 解决什么问题
+大数据实时读写；官网说数据上亿或十亿，其实目前对于MySQL来说单表上亿、单列索引
+
+
+### 适用场景
+
