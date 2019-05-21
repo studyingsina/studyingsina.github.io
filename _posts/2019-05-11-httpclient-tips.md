@@ -20,7 +20,7 @@ tags:
 
 异常堆栈如下
 
-```Java
+```java
 
 Exception org.apache.http.conn.ConnectionPoolTimeoutException	ERROR	post error, url:http://xxx, Timeout waiting for connection from pool org.apache.http.conn.ConnectionPoolTimeoutException: Timeout waiting for connection from pool
 at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.leaseConnection(PoolingHttpClientConnectionManager.java:254)
@@ -82,7 +82,7 @@ at java.lang.Thread.run(Thread.java:745)
 
 下面是一个HTTP GET请求的测试代码；
 
-```Java
+```java
 
     @Test
     public void testGet() {
@@ -121,7 +121,7 @@ at java.lang.Thread.run(Thread.java:745)
 
 如果用Java自带的HttpURLConnection来写，实现一个POST请求，如下：
 
-```Java
+```java
 
     @Test
     public void testHttpConn() {
@@ -189,7 +189,7 @@ at java.lang.Thread.run(Thread.java:745)
 
 如果用Apache HttpClient来写，代码会简单很多，如下：
 
-```Java
+```java
 
     @Test
     public void postGet() {
