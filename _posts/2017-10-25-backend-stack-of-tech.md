@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "带新人感想及Java后台新人技术栈"
+title: "Java后台新人技术栈"
 description: "新人 技术栈"
 categories: 
 - Tech
