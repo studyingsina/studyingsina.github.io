@@ -121,12 +121,31 @@ request-->Pipeline(Engine的责任链)-->自定义各种过滤器（Engine的）
 
 ![tomcat019](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.019.jpeg)
 
-当最后的WrapperVavle拿到请求后，要把请求传递给Servlet，但是我们都知道，Servlet规范是支持在请求前也配置过滤器的，其实是就Sun在制定Servlet规范时，在应用层给了广大程序员提供可扩展，要求Servlet窗口再实现一个应用层的责任链（过滤器链）
+当最后的WrapperVavle拿到请求后，要把请求传递给Servlet，但是我们都知道，Servlet规范是支持在请求前也配置过滤器的，其实是就Sun在制定Servlet规范时，在应用层给了广大程序员提供可扩展，要求Servlet容器再实现一个应用层的责任链（过滤器链），如下图：
 
-## tomcat是怎么实现的
+![tomcat020](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.020.jpeg)
 
-抽象
+我们将前边提到的这些过程整合一下就变成下图：
 
+![tomcat021](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.021.jpeg)
+
+整个请求从进入Tomcat到返回结果流经的路线；但是这样还不够，我们需要将上图这些组件进行组装、抽像，我们将左侧Acceptor、Queue、ThreadPool、Handler这些组装起来，叫做Connector（连接器：连接浏览器来的请求），然后右侧这些抽像起来叫做Container（容器），Wrapper是小容器、Context是中容器、Host大容器、Engine是特大容器，如图：
+
+![tomcat022](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.022.jpeg)
+
+如果我们再抽像一层，将Connetor和Container组装到一起呢，是不是就可以组成一个服务（Service），如图：
+
+![tomcat023](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.023.jpeg)
+
+如果多个Service组合起来再抽像一层，可以称为一个服务器（Server），如图：
+
+![tomcat024](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.024.jpeg)
+
+把上图和Tomcat的配置文件放一起对比下，上边讲的概述基本上在配置文件中都有对应的标签：
+
+![tomcat025](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.025.jpeg)
+
+```XML
 Server
  --Service
   --Connector
@@ -136,10 +155,74 @@ Server
     --Context
    --Host
  --Service
+ ```
 
-acceptor-->worker-->Http11Processor-->
+下边我们通过Debug一个HTTP请求，看下请求过程中的组件（上边提到的Connector、Container等）及调用堆栈，
 
-connector-->socket-->HTTPProtocolHandler-->
+先来看下相关的重要组件：
+
+![tomcat026](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.026.jpeg)
+
+Server对象中可以有多个Service、Service对象中可以有多个Connector+一个Engine；
+
+![tomcat027](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.027.jpeg)
+
+Engine对象中可以有多个Host，Engine用一个Map来存储多个Host，图中示例仅一个名叫localhost的Host；
+
+![tomcat028](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.028.jpeg)
+
+Host对象中可以有多个Context（应用），Host也用一个Map来存储多个Context，图中示例有5个Context，就是Tomcat本身自带几个应用；
+
+![tomcat029](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.029.jpeg)
+
+Context对象中可以有多个Wrapper（Servlet），Context也用一个Map来存储多个Wrapper，图中示例有19个Wrapper，就是Tomcat自带example应用下的demo，Map的key就是web.xml中配置的Servlet名称，value是具体Tomcat生成的Wrapper实例；
+
+再来看下请求的调用堆栈：
+
+![tomcat030](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.030.jpeg)
+
+1.调用栈最底层是一个Thread；
+2.SocketProcessor对Socket进行解析处理；
+3.其实是将请求交给Http11Processor对Socket中网络Stream进行解析；
+4.然后通过一个适配器（Adaptor）将Connector中的请求传递给Container，Container不会亲自处理请求，而是将请求交给每一层容器的过滤器（一堆invoke方法，每一个都是责任链中的一个过滤器）
+5.在Wrapper的过滤器时生成一个Servlet的过滤器链（FilterChain）
+6.Filter走完请求最后交到Servlet中；
+
+在堆栈中我们见到一个叫ErrorReportVavle的过滤器，是Tomcat在Host这一层中内置的，它的作用是干啥呢？还记得Tomcat著名的404错误页面么？没错：
+
+![tomcat031](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.031.jpeg)
+
+这个就是当请求的url不存在时，tomcat返回的默认404界面，来看下它内部的主要实现：
+
+![tomcat032](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.032.jpeg)
+
+其实就是用代码拼出一个404的HTML界面，当然我们可以自己去实现一个替换掉默认的；
+
+让我们再来回顾一遍整个Tomcat处理HTTP请求的过程：
+
+![tomcat032](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.032.jpeg)
+
+1.当HTTP请求进来时，Server并不会亲自去处理，而是转交给内部的Service；
+2.Service也不会亲自去处理，而是交给Connctor中的Acceptor，Acceptor是专门监听请求的；
+3.Acceptor接收到请求（Socket）后，将请求（Socket）放到队列（Queue）中，然后自己又继续监听新的请求；
+4.Connector从内部线程池（ThreadPool）中找出一个线程去工作，通过调用HTTP处理器（Handler）去解析HTTP请求；
+5.Connector将请求从内部传递到Engine中，Engine将请求交给自己的责任链（Pipeline），责任链又找到内部配置的过滤器；
+6.每个过滤器执行自己内部的逻辑，然后将请求往下一层层传递，直至Servlet内部；
+7.到Servlet后其实就到应用层了，就是广大业务开发同学的领域了，可以写一些增删改查返回结果；
+8.返回结果再一层层向上（和刚才请求进来的流程顺序刚好相反）直至返回上游；
+
+我们回过头来想一想，为何Tomcat把自己内部搞的这么复杂，是为了达到什么目标？像Jetty那样简洁一些不好么？
+
+![tomcat033](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.033.jpeg)
+
+作为一个带有Sun官方基因的开源窗口，面对的使用场景是各种各样的，不同的场景需要有不同的诉求，所以说开源项目要考虑的一个重要因素便是扩展可替换，大到扩展核心组件、小到扩展某一个功能点如日志打印，所以进行这么多抽像封装、设计，比如我们可以切换不同的IO实现、可以替换整个Connector；（仅个人观点）
+
+
+## 后续
+
+后续大家有啥想了解的，我们可以进一步探讨，如：
+
+![tomcat035](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.035.jpeg)
 
 ## Ref
 
@@ -147,4 +230,7 @@ connector-->socket-->HTTPProtocolHandler-->
 
 [Where Did Tomcat Come From?](https://www.oreilly.com/library/view/tomcat-the-definitive/9780596101060/ch01s05.html)
 
+[How Tomcat Works](https://book.douban.com/subject/1943128/)
+
+[apache-tomcat-9.0.36-src](https://github.com/apache/tomcat/tree/9.0.x)
 
