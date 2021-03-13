@@ -70,6 +70,10 @@ tags:
 
 ![tomcat012](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.012.jpeg)
 
++ 抽象出一个Acceptor，用来监听HTTP端口，接收请求；
++ 抽象出一个HttpHandler，用来解析/封装HTTP请求；
++ Controller是业务层的实现；
+
 ### 性能
 
 从线程的角度来看，目前只有一个应用启动线程（main线程）在处理监听端口-解析http请求的事情，这样当请求多的话、main线程的处理效率成为瓶颈，所以我们将监听端口和请求处理分开，如下图：
