@@ -258,7 +258,15 @@ Server
 
 ## 八卦
 
+还记得文章开头给大家提需求的产品经理么，在[Sun Microsystems](https://en.wikipedia.org/wiki/Sun_Microsystems)任职了4年（1997-2001）的[James Duncan Davidson](https://en.wikipedia.org/wiki/James_Duncan_Davidson)，没错，他当年是Sun的一个工程师（一年后title由技术专员晋升为资深工程师），开发了Tomcat、后来Sun将Tomcat贡献给Apache。
 
+在今年（2021-02-28）[James Duncan Davidson](https://en.wikipedia.org/wiki/James_Duncan_Davidson)从Microsoft离职去创业了，去Microsoft之前James Duncan Davidson在[奇妙清单](https://zh.wikipedia.org/wiki/%E5%A5%87%E5%A6%99%E6%B8%85%E5%96%AE)工作，2015年6月奇妙清单被Microsoft收购，这之后James Duncan Davidson在Microsoft工作了五年半。
+
+James Duncan Davidson从2005年开始喜欢上摄影，摄影已经成为他的业余兴趣爱好，此处摘一张照片：
+
+![tomcat037](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.037.jpg)
+
+其实文中封面照片也是取自James Duncan Davidson。
 
 ## Ref
 
