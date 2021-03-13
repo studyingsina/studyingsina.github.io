@@ -10,15 +10,13 @@ tags:
 * content
 {:toc}
 
-![A-HTTP-Request-In-The-Tomcat](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.001.jpeg)
+![tomcat002](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.002.jpeg)
 
 ## 背景
 
 组内要求每人都要进行分享，故准备一个组内的小分享，因为实际工作中使用过Tomcat和Jetty作为Servlet容器，所以先来熟悉下Tomcat，当然现在使用Jetty更多；
 
 通过了解一次HTTP请求在Tomcat中的流转来认识Tomcat内的重要组件及设计；
-
-![tomcat002](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.002.jpeg)
 
 ## 需求
 
@@ -265,8 +263,6 @@ Server
 James Duncan Davidson从2005年开始喜欢上摄影，摄影已经成为他的业余兴趣爱好，此处摘一张照片：
 
 ![tomcat037](/css/pics/tomcat/A-HTTP-Request-In-The-Tomcat.037.jpg)
-
-其实文中封面照片也是取自James Duncan Davidson。
 
 ## Ref
 
