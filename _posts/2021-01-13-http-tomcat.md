@@ -276,3 +276,4 @@ James Duncan Davidson从2005年开始喜欢上摄影，摄影已经成为他的�
 
 [apache-tomcat-9.0.36-src](https://github.com/apache/tomcat/tree/9.0.x)
 
+[本文所用图片](/css/pics/files/A-HTTP-Request-In-The-Tomcat.pdf)
