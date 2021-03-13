@@ -2,9 +2,9 @@
 layout: post
 title: "一次HTTP请求在Tomcat中的执行流程"
 categories: 
-- Life
+- Tech
 tags:
-- Life
+- Tech
 ---
 
 * content
