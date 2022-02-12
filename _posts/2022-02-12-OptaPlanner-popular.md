@@ -4,7 +4,7 @@ title: "OptaPlanner源码解析"
 categories: 
 - Tech
 tags:
-- Tech
+- Tech 运筹优化
 ---
 
 * content
